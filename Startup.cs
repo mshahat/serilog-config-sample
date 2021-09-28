@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Serilog;
 
 namespace serilog_config_sample
 {
@@ -42,6 +43,9 @@ namespace serilog_config_sample
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "serilog-config-sample v1"));
             }
+
+            //Add Serilog Request logging. The included middleware condenses these into a single event that carries method, path, status code, and timing information.
+            app.UseSerilogRequestLogging();
 
             app.UseRouting();
 
