@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Serilog;
+using Serilog.Context;
 
 namespace serilog_config_sample.Controllers
 {
@@ -29,7 +30,16 @@ namespace serilog_config_sample.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
-            _diagnosticContext.Set("TransactionId", Guid.NewGuid());
+            // create guid to be used for transactionid
+            Guid myGuid = Guid.NewGuid();
+
+            //push propery Transaction id to be used for log info, debug ...etc.
+            LogContext.PushProperty("TransactionId", myGuid);
+            // add a property to diagnosticcontext which is used for request logging middleware
+            _diagnosticContext.Set("TransactionId", myGuid);
+
+            //a debug message to test
+            _logger.LogDebug("log debug with _logger");
 
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
