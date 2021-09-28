@@ -16,6 +16,7 @@ namespace serilog_config_sample
                 // Add Serilog as the logging provider. Serilog could be configured configured through appsettings.json
                 .UseSerilog((context, services, configuration) => configuration
                     .ReadFrom.Configuration(context.Configuration))
+                    //.Enrich.FromLogContext())
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
