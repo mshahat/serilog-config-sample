@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace serilog_config_sample.Controllers
 {
@@ -17,15 +18,19 @@ namespace serilog_config_sample.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly IDiagnosticContext _diagnosticContext;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IDiagnosticContext diagnosticContext)
         {
             _logger = logger;
+            _diagnosticContext = diagnosticContext ?? throw new ArgumentNullException(nameof(diagnosticContext));
         }
 
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
+            _diagnosticContext.Set("TransactionId", Guid.NewGuid());
+
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
