@@ -5,4 +5,10 @@
     <RootNamespace>serilog_config_sample</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Swashbuckle.AspNetCore" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.2" />
+  </ItemGroup>
 </Project>
