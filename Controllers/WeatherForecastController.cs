@@ -38,8 +38,8 @@ namespace serilog_config_sample.Controllers
             // add a property to diagnosticcontext which is used for request logging middleware
             _diagnosticContext.Set("TransactionId", myGuid);
 
-            //a debug message to test
-            _logger.LogDebug("log debug with _logger");
+            //a debug message to test with serilog capability of inputs
+            _logger.LogDebug("log debug with _logger {orderId} ", "1234");
 
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
