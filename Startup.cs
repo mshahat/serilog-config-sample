@@ -32,6 +32,7 @@ namespace serilog_config_sample
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "serilog-config-sample", Version = "v1" });
             });
+            services.AddHttpContextAccessor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

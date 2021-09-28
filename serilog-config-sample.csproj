@@ -8,9 +8,11 @@
   <ItemGroup>
     <None Remove="Swashbuckle.AspNetCore" />
     <None Remove="Serilog.AspNetCore" />
+    <None Remove="Serilog.Enrichers.ClientInfo" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.2" />
     <PackageReference Include="Serilog.AspNetCore" Version="4.1.0" />
+    <PackageReference Include="Serilog.Enrichers.ClientInfo" Version="1.1.4" />
   </ItemGroup>
 </Project>
