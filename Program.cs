@@ -8,6 +8,10 @@ namespace serilog_config_sample
     {
         public static void Main(string[] args)
         {
+            //Use the following couple of lines to debug Serilog issues
+            //var file = File.CreateText("failure.log");
+            //Serilog.Debugging.SelfLog.Enable(TextWriter.Synchronized(file));
+
             CreateHostBuilder(args).Build().Run();
         }
 
